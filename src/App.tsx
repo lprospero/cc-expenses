@@ -1,26 +1,26 @@
-// @ts-ignore Cannot find module './logo.svg' or its corresponding type declarations.ts(2307)
-import logo from './logo.svg';
 import './App.css';
+import { PieChart, Pie, Cell, Tooltip } from 'recharts';
+
+const data = [
+  { name: 'Food', value: 400 },
+  { name: 'Rent', value: 800 },
+  { name: 'Transport', value: 200 },
+];
+const COLORS = ['#0088FE', '#00C49F', '#FFBB28'];
 
 function App() {
   return (
     <div className="App">
-      <h1 className="text-3xl font-bold underline text-red-600">
-        Hello world!
-      </h1>
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <h1 className="text-3xl font-bold underline text-white">Expenses Chart</h1>
+        <PieChart width={300} height={300}>
+          <Pie data={data} dataKey="value" nameKey="name" outerRadius={100} label>
+            {data.map((entry, index) => (
+              <Cell key={entry.name} fill={COLORS[index % COLORS.length]} />
+            ))}
+          </Pie>
+          <Tooltip />
+        </PieChart>
       </header>
     </div>
   );
