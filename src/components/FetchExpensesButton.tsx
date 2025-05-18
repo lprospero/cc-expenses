@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { collection, getDocs } from 'firebase/firestore';
 import { db } from '../firebase';
 
@@ -75,6 +75,7 @@ const FetchExpensesButton = () => {
         });
 
         const data = await res.json();
+        console.log(JSON.stringify(data));
         // TODO: Might need to parse this when actual response comes
         setResponse(data.choices?.[0]?.message?.content || DEFAULT_RESPONSE);
       } catch (error: any) {
@@ -82,8 +83,6 @@ const FetchExpensesButton = () => {
       } finally {
         setLoading(false);
       }
-
-      console.log('Fetched expenses:', expensesList);
     } catch (error) {
       console.error('Error fetching expenses: ', error);
     }
