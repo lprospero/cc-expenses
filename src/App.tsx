@@ -4,8 +4,12 @@ import ExpensesChart from './components/ExpensesChart';
 import AuthButtons from './components/AuthButtons';
 import AddExpensesButton from './components/AddExpensesButton';
 import FetchExpensesButton from './components/FetchExpensesButton';
+import { useReducer } from 'react';
+import { expenseReducer, initialState } from './reducers/expenseReducer';
 
-function App() {
+const App = () => {
+  const [state, dispatch] = useReducer(expenseReducer, initialState);
+
   return (
     <div className="flex h-screen bg-gray-300">
       <Sidebar />
@@ -21,13 +25,13 @@ function App() {
         <main className="flex-1 p-6 bg-white overflow-auto rounded-b-lg space-y-6">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <AddExpensesButton />
-            <FetchExpensesButton />
+            <FetchExpensesButton onData={(data:any) => dispatch({ type: "SET_DATA", payload: data })} />
           </div>
 
           <div className="bg-white rounded-lg shadow p-4">
-            <h2 className="text-lg font-semibold mb-4">Expenses Breakdown</h2>
+            <h2 className="text-lg font-semibold mb-4">Visualisation</h2>
             <div className="h-96">
-              <ExpensesChart />
+              <ExpensesChart data={state.expensesData}/>
             </div>
           </div>
         </main>

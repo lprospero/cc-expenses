@@ -35,8 +35,7 @@ const DEFAULT_RESPONSE = [
   }
 ];
 
-const FetchExpensesButton = () => {
-  const [response, setResponse] = useState('');
+const FetchExpensesButton = ({ onData } : { onData:any }) => {
   const [loading, setLoading] = useState(false);
 
   const fetchExpenses = async () => {
@@ -77,9 +76,10 @@ Respond only with the JSON array.
         const data = await res.json();
         console.log(JSON.stringify(data));
         // TODO: Might need to parse this when actual response comes
-        setResponse(data.choices?.[0]?.message?.content || DEFAULT_RESPONSE);
+        const expensesData = data.choices?.[0]?.message?.content || DEFAULT_RESPONSE
+        onData(expensesData);
       } catch (error: any) {
-        setResponse('Error: ' + error.message);
+        console.error(error);
       } finally {
         setLoading(false);
       }
@@ -97,8 +97,6 @@ Respond only with the JSON array.
       >
         {loading ? 'Loading...' : 'Fetch Expenses'}
       </button>
-
-      <pre className="bg-gray-700 text-white mt-4 whitespace-pre-wrap p-4 rounded">{response ? JSON.stringify(response) : null}</pre>
     </div>
   );
 };
