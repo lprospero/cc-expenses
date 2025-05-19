@@ -35,7 +35,7 @@ const AddExpensesButton = () => {
   return (
     <button
       onClick={handleAddExpense}
-      className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 disabled:opacity-50"
+      className="bg-blue-600 text-white hover:bg-blue-700 disabled:opacity-50 px-4 py-2 rounded"
       disabled={loading}
     >
       {loading ? 'Adding...' : 'Add Expenses'}

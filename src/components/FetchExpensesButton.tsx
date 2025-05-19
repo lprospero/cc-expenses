@@ -41,25 +41,25 @@ const FetchExpensesButton = () => {
 
   const fetchExpenses = async () => {
     try {
-      const colRef = collection(db, 'expenses');
-      const snapshot = await getDocs(colRef);
+      const expensesCollection = collection(db, 'expenses');
+      const snapshot = await getDocs(expensesCollection);
       const expensesList = snapshot.docs.map((doc) => ({
         id: doc.id,
         ...doc.data(),
       }));
 
       const prompt = `
-        Compress the following expenses JSON data by grouping it by expenseType. 
-        For each group, provide a JSON object with these properties:
-        - TYP: the category name
-        - VND: an array of unique vendor names in that category
-        - AMT: sum of all amounts in that category
-        - MON: month of the expenses (assume all belong to the same month in the data)
+Compress the following expenses JSON data by grouping it by expenseType. 
+For each group, provide a JSON object with these properties:
+- TYP: the category name
+- VND: an array of unique vendor names in that category
+- AMT: sum of all amounts in that category
+- MON: month of the expenses (assume all belong to the same month in the data)
 
-        Here is the data:
-        ${JSON.stringify(expensesList, null, 2)}
+Here is the data:
+${JSON.stringify(expensesList, null, 2)}
 
-        Respond only with the JSON array.
+Respond only with the JSON array.
       `;
       console.log(`Prompt: \n ${prompt}`);
 
@@ -92,13 +92,13 @@ const FetchExpensesButton = () => {
     <div>
       <button
         onClick={fetchExpenses}
-        className="bg-blue-600 text-white px-4 py-2 rounded"
+        className="bg-blue-600 text-white hover:bg-blue-700 disabled:opacity-50 px-4 py-2 rounded"
         disabled={loading}
       >
         {loading ? 'Loading...' : 'Fetch Expenses'}
       </button>
 
-      <pre className="mt-4 whitespace-pre-wrap bg-gray-700 p-4 rounded">{response ? JSON.stringify(response) : null}</pre>
+      <pre className="bg-gray-700 text-white mt-4 whitespace-pre-wrap p-4 rounded">{response ? JSON.stringify(response) : null}</pre>
     </div>
   );
 };

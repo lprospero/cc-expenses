@@ -9,7 +9,7 @@ const AuthButtons = () => {
   const logout = () => signOut(auth);
 
   return (
-    <div className="mb-4">
+    <div className="mb-4 ml-auto">
       {user ? (
         <>
           <p className="mb-2">Signed in as {user.displayName}</p>
