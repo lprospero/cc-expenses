@@ -1,6 +1,11 @@
+import { ExpenseTransaction } from '../interfaces/Expenses';
 import { addDoc, collection } from 'firebase/firestore';
 import { db } from '../firebase';
 import { useState } from 'react';
+
+/**
+ * Button responsible for adding expense transaction objects to the Firebase database
+ */
 
 const AddExpensesButton = () => {
   const [loading, setLoading] = useState(false);
@@ -8,7 +13,7 @@ const AddExpensesButton = () => {
   const handleAddExpense = async () => {
     setLoading(true);
     try {
-      const transactions = [
+      const transactions : ExpenseTransaction[] = [
         { VND: 'Amazon', AMT: 89.99, DTE: '2025-04-10' },
         { VND: 'Starbucks', AMT: 5.25, DTE: '2025-04-11' },
         { VND: 'Apple Store', AMT: 1299.0, DTE: '2025-04-15' },

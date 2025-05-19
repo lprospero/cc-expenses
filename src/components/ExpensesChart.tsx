@@ -1,13 +1,15 @@
-import { ExpenseData } from '../interfaces/Expenses';
+import { ExpensesSummaryData } from '../interfaces/Expenses';
 import { PieChart, Pie, Cell, Tooltip } from 'recharts';
 
 const COLORS = ['#0088FE', '#00C49F', '#FFBB28'];
 
-type Props = {
-  data: ExpenseData[];
-};
+/**
+ * Wrapper of PieChart component that pass down data from the expensesData state property
+ *
+ * @param {ExpensesSummaryData[]} data Expense data used by the PieChart component
+ */
 
-const ExpensesChart : React.FC<Props> = ({ data } : { data : any }) => {
+const ExpensesChart : React.FC<{data: ExpensesSummaryData[]}> = ({ data } : { data : ExpensesSummaryData[] }) => {
   return (
     <div>
       <PieChart width={300} height={300}>

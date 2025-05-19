@@ -2,6 +2,15 @@
  * Interfaces and types related to expenses
  */
 
+export type ExpenseTransaction = {
+  /** Vendor name */
+  VND: string;
+  /** Amount */
+  AMT: number;
+  /** YYYY-MM-DD Date */
+  DTE: string;
+};
+
 export type OpenAIExpenseObject = {
   /** Expense type */
   TYP: string;
@@ -9,11 +18,11 @@ export type OpenAIExpenseObject = {
   VND: string[];
   /** Total amount */
   AMT: number;
-  /** Month grouping of expenses */
+  /** YYYY-MM month */
   MON: string;
 };
 
-export type ExpenseData = {
+export type ExpensesSummaryData = {
   /** Name to appear on chart or graph */
   name: string;
   /** Value to appear on chart or graph */
@@ -21,7 +30,7 @@ export type ExpenseData = {
 };
 
 export type ExpenseState = {
-  expensesData: ExpenseData[];
+  expensesData: ExpensesSummaryData[];
 };
 
-export type ReducerAction = { type: 'SET_DATA'; payload: ExpenseData[] } | { type: 'CLEAR_DATA' };
+export type ReducerAction = { type: 'SET_DATA'; payload: OpenAIExpenseObject[] } | { type: 'CLEAR_DATA' };

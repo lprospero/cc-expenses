@@ -1,3 +1,7 @@
+/**
+ * Sidebar navigation component
+ */
+
 const Sidebar = () => {
   return (
     <aside className="w-64 bg-gray-100 text-gray-800 p-4 space-y-4 rounded-lg m-2">

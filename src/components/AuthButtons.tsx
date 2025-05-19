@@ -2,6 +2,10 @@ import { auth, provider } from '../firebase';
 import { signInWithPopup, signOut } from 'firebase/auth';
 import { useAuthState } from 'react-firebase-hooks/auth';
 
+/**
+ * Buttons reponsible for signing in user to enable interaction with the Firebase database
+ */
+
 const AuthButtons = () => {
   const [user] = useAuthState(auth);
 

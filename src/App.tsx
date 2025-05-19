@@ -4,6 +4,7 @@ import ExpensesChart from './components/ExpensesChart';
 import AuthButtons from './components/AuthButtons';
 import AddExpensesButton from './components/AddExpensesButton';
 import FetchExpensesButton from './components/FetchExpensesButton';
+import { OpenAIExpenseObject } from './interfaces/Expenses';
 import { useReducer } from 'react';
 import { expenseReducer, initialState } from './reducers/expenseReducer';
 
@@ -25,7 +26,7 @@ const App = () => {
         <main className="flex-1 p-6 bg-white overflow-auto rounded-b-lg space-y-6">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <AddExpensesButton />
-            <FetchExpensesButton onData={(data:any) => dispatch({ type: "SET_DATA", payload: data })} />
+            <FetchExpensesButton onData={(param : OpenAIExpenseObject[]) => dispatch({ type: "SET_DATA", payload: param })} />
           </div>
 
           <div className="bg-white rounded-lg shadow p-4">
