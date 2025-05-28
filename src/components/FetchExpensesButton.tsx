@@ -85,7 +85,7 @@ Respond only with the JSON array.
         console.log(JSON.stringify(data));
         // TODO: Might need to parse this when actual response comes
         const expensesData = data.choices?.[0]?.message?.content as OpenAIExpenseObject[] || DEFAULT_RESPONSE;
-        dispatch({ type: 'SET_DATA', payload: expensesData });
+        dispatch({ type: 'SET_FETCHED_DATA', payload: expensesData });
       } catch (error: any) {
         console.error(error);
       } finally {

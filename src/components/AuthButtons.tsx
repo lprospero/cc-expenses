@@ -18,7 +18,7 @@ const AuthButtons = () => {
     if (user) {
       dispatch({ type: 'LOGIN', payload: { name: user.displayName || '' } });
     } else {
-      dispatch({ type: 'SET_DATA', payload: [] });
+      dispatch({ type: 'SET_FETCHED_DATA', payload: [] });
       dispatch({ type: 'LOGOUT' });
     }
   }, [user, dispatch]);
