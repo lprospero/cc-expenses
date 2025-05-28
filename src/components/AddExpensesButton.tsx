@@ -11,22 +11,22 @@ import { useAppContext } from '../context/AppContext';
 const AddExpensesButton = () => {
   const { state } = useAppContext();
   const [loading, setLoading] = useState(false);
+  const transactions : ExpenseTransaction[] = [
+    { VND: 'Amazon', AMT: 89.99, DTE: '2025-04-10' },
+    { VND: 'Starbucks', AMT: 5.25, DTE: '2025-04-11' },
+    { VND: 'Apple Store', AMT: 1299.0, DTE: '2025-04-15' },
+    { VND: 'Uber', AMT: 17.5, DTE: '2025-04-16' },
+    { VND: 'Netflix', AMT: 19.99, DTE: '2025-04-17' },
+    { VND: 'Woolworths', AMT: 65.4, DTE: '2025-04-18' },
+    { VND: 'JB Hi-Fi', AMT: 249.0, DTE: '2025-04-19' },
+    { VND: 'Coles', AMT: 42.75, DTE: '2025-04-20' },
+    { VND: 'Spotify', AMT: 10.99, DTE: '2025-04-21' },
+    { VND: 'Kmart', AMT: 36.0, DTE: '2025-04-22' },
+  ];
 
   const handleAddExpense = async () => {
     setLoading(true);
     try {
-      const transactions : ExpenseTransaction[] = [
-        { VND: 'Amazon', AMT: 89.99, DTE: '2025-04-10' },
-        { VND: 'Starbucks', AMT: 5.25, DTE: '2025-04-11' },
-        { VND: 'Apple Store', AMT: 1299.0, DTE: '2025-04-15' },
-        { VND: 'Uber', AMT: 17.5, DTE: '2025-04-16' },
-        { VND: 'Netflix', AMT: 19.99, DTE: '2025-04-17' },
-        { VND: 'Woolworths', AMT: 65.4, DTE: '2025-04-18' },
-        { VND: 'JB Hi-Fi', AMT: 249.0, DTE: '2025-04-19' },
-        { VND: 'Coles', AMT: 42.75, DTE: '2025-04-20' },
-        { VND: 'Spotify', AMT: 10.99, DTE: '2025-04-21' },
-        { VND: 'Kmart', AMT: 36.0, DTE: '2025-04-22' },
-      ];
       for (const tx of transactions) {
         await addDoc(collection(db, 'expenses'), tx);
       }
@@ -48,6 +48,7 @@ const AddExpensesButton = () => {
       >
         {loading ? 'Adding...' : 'Add Expenses'}
       </button>
+      <pre className='bg-gray-700 text-white mt-4 whitespace-pre-wrap p-4 rounded'>{JSON.stringify(transactions)}</pre>
     </div>
   );
 };

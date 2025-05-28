@@ -19,7 +19,6 @@ const ExpensesChart = () => {
         </Pie>
         <Tooltip />
       </PieChart>
-      <pre className='bg-gray-700 text-white mt-4 whitespace-pre-wrap p-4 rounded'>{state.expenses.expensesData ? JSON.stringify(state.expenses.expensesData) : null}</pre>
     </div>
   );
 };

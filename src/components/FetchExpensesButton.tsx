@@ -105,6 +105,7 @@ Respond only with the JSON array.
       >
         {loading ? 'Loading...' : 'Fetch Expenses'}
       </button>
+      <pre className='bg-gray-700 text-white mt-4 whitespace-pre-wrap p-4 rounded'>{state.expenses.expensesData ? JSON.stringify(state.expenses.expensesData) : null}</pre>
     </div>
   );
 };
