@@ -10,7 +10,7 @@ const Dashboard = () => {
       <div className="bg-white rounded-lg shadow p-4">
         <h2 className="text-lg font-semibold mb-4">Visualisation</h2>
         {state.expenses.expensesData.length > 0 && (
-          <div className="h-96">
+          <div>
             <ExpensesChart />
           </div>
         )}
