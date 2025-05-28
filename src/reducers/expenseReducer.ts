@@ -1,6 +1,6 @@
-import { ExpenseState, OpenAIExpenseObject, ReducerAction } from '../interfaces/Expenses';
+import { ExpenseState, OpenAIExpenseObject, ExpenseAction } from '../interfaces/Expenses';
 
-export const initialState: ExpenseState = {
+export const expenseInitialState: ExpenseState = {
   expensesData: [],
 };
 
@@ -11,7 +11,7 @@ export const initialState: ExpenseState = {
  * @param {ReducerAction} action Reducer action 
  * @returns {ExpenseState} Expenses data
  */
-export function expenseReducer(state: ExpenseState, action: ReducerAction): ExpenseState {
+export function expenseReducer(state: ExpenseState, action: ExpenseAction): ExpenseState {
   switch (action.type) {
     case 'SET_DATA':
       return { ...state, expensesData: action.payload.map((expense: OpenAIExpenseObject) => ({ name: expense.TYP, value: expense.AMT })) };

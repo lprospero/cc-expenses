@@ -2,12 +2,14 @@ import { ExpenseTransaction } from '../interfaces/Expenses';
 import { addDoc, collection } from 'firebase/firestore';
 import { db } from '../firebase';
 import { useState } from 'react';
+import { useAppContext } from '../context/AppContext';
 
 /**
  * Button responsible for adding expense transaction objects to the Firebase database
  */
 
 const AddExpensesButton = () => {
+  const { state } = useAppContext();
   const [loading, setLoading] = useState(false);
 
   const handleAddExpense = async () => {
@@ -38,13 +40,15 @@ const AddExpensesButton = () => {
   };
 
   return (
-    <button
-      onClick={handleAddExpense}
-      className="bg-blue-600 text-white hover:bg-blue-700 disabled:opacity-50 px-4 py-2 rounded"
-      disabled={loading}
-    >
-      {loading ? 'Adding...' : 'Add Expenses'}
-    </button>
+    <div>
+      <button
+        onClick={handleAddExpense}
+        className="bg-blue-600 text-white hover:bg-blue-700 disabled:opacity-50 px-4 py-2 rounded"
+        disabled={!state.auth.user?.name || loading}
+      >
+        {loading ? 'Adding...' : 'Add Expenses'}
+      </button>
+    </div>
   );
 };
 

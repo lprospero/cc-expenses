@@ -33,4 +33,4 @@ export type ExpenseState = {
   expensesData: ExpensesSummaryData[];
 };
 
-export type ReducerAction = { type: 'SET_DATA'; payload: OpenAIExpenseObject[] } | { type: 'CLEAR_DATA' };
+export type ExpenseAction = { type: 'SET_DATA'; payload: OpenAIExpenseObject[] } | { type: 'CLEAR_DATA' };

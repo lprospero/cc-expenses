@@ -1,3 +1,4 @@
+import { useAppContext } from '../context/AppContext';
 import { OpenAIExpenseObject } from '../interfaces/Expenses';
 import { useState } from 'react';
 import { collection, getDocs } from 'firebase/firestore';
@@ -39,11 +40,10 @@ const DEFAULT_RESPONSE : OpenAIExpenseObject[] = [
 /**
  * Sends a prompt containing the fetched data from the Firebase database
  * Expects a summarised version of the expense transactions as an object
- *
- * @param {function} onData Callback function to set the value of the expensesData state property
  */
 
-const FetchExpensesButton = ({ onData } : { onData: (param : OpenAIExpenseObject[]) => void }) => {
+const FetchExpensesButton = () => {
+  const { state, dispatch } = useAppContext();
   const [loading, setLoading] = useState(false);
 
   const fetchExpenses = async () => {
@@ -85,7 +85,7 @@ Respond only with the JSON array.
         console.log(JSON.stringify(data));
         // TODO: Might need to parse this when actual response comes
         const expensesData = data.choices?.[0]?.message?.content as OpenAIExpenseObject[] || DEFAULT_RESPONSE;
-        onData(expensesData);
+        dispatch({ type: 'SET_DATA', payload: expensesData });
       } catch (error: any) {
         console.error(error);
       } finally {
@@ -101,7 +101,7 @@ Respond only with the JSON array.
       <button
         onClick={fetchExpenses}
         className="bg-blue-600 text-white hover:bg-blue-700 disabled:opacity-50 px-4 py-2 rounded"
-        disabled={loading}
+        disabled={!state.auth.user?.name || loading}
       >
         {loading ? 'Loading...' : 'Fetch Expenses'}
       </button>
