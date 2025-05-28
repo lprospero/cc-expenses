@@ -1,6 +1,6 @@
 import ExpensesChart from '../../components/ExpensesChart';
-import AddExpensesButton from '../../components/AddExpensesButton';
-import FetchExpensesButton from '../../components/FetchExpensesButton';
+import AddTransactionsButton from '../../components/AddTransactionsButton';
+import SummariseExpensesButton from '../../components/SummariseExpensesButton';
 import { useAppContext } from '../../context/AppContext';
 
 const Dashboard = () => {
@@ -14,8 +14,8 @@ const Dashboard = () => {
         </div>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <AddExpensesButton />
-        <FetchExpensesButton />
+        <AddTransactionsButton />
+        <SummariseExpensesButton />
       </div>
     </main>
   );

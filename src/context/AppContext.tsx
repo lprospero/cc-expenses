@@ -12,9 +12,9 @@ const globalInitialState = {
 };
 
 // Combined reducers
-const globalReducer = (state : GlobalState , action : GlobalAction) : GlobalState => ({
+const globalReducer = (state: GlobalState, action: GlobalAction): GlobalState => ({
   auth: authReducer(state.auth, action as AuthAction),
-  expenses: expenseReducer(state.expenses, action as ExpenseAction)
+  expenses: expenseReducer(state.expenses, action as ExpenseAction),
 });
 
 export const GlobalContext = createContext<GlobalContextProps>({
@@ -22,14 +22,10 @@ export const GlobalContext = createContext<GlobalContextProps>({
   dispatch: () => null,
 });
 
-export const AppProvider = ({ children } : {children : ReactNode}) => {
+export const AppProvider = ({ children }: { children: ReactNode }) => {
   const [state, dispatch] = useReducer(globalReducer, globalInitialState);
 
-  return (
-    <GlobalContext.Provider value={{ state, dispatch }}>
-      {children}
-    </GlobalContext.Provider>
-  );
+  return <GlobalContext.Provider value={{ state, dispatch }}>{children}</GlobalContext.Provider>;
 };
 
 // Custom hook

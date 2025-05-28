@@ -5,7 +5,7 @@ import { useAppContext } from '../context/AppContext';
 import { useEffect } from 'react';
 
 /**
- * Buttons reponsible for signing in user to enable interaction with the Firebase database
+ * Buttons responsible for signing in user to enable interaction with the Firebase database
  */
 
 const AuthButtons = () => {

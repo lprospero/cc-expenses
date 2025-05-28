@@ -42,7 +42,7 @@ const DEFAULT_RESPONSE : OpenAIExpenseObject[] = [
  * Expects a summarised version of the expense transactions as an object
  */
 
-const FetchExpensesButton = () => {
+const SummariseExpensesButton = () => {
   const { state, dispatch } = useAppContext();
   const [loading, setLoading] = useState(false);
 
@@ -103,11 +103,11 @@ Respond only with the JSON array.
         className="bg-blue-600 text-white hover:bg-blue-700 disabled:opacity-50 px-4 py-2 rounded"
         disabled={!state.auth.user?.name || loading}
       >
-        {loading ? 'Loading...' : 'Fetch Expenses'}
+        {loading ? 'Loading...' : 'Summarise'}
       </button>
       <pre className='bg-gray-700 text-white mt-4 whitespace-pre-wrap p-4 rounded'>{state.expenses.expensesData ? JSON.stringify(state.expenses.expensesData) : null}</pre>
     </div>
   );
 };
 
-export default FetchExpensesButton;
+export default SummariseExpensesButton;
