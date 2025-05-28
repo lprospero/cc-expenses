@@ -30,7 +30,8 @@ export type ExpensesSummaryData = {
 };
 
 export type ExpenseState = {
+  transactionsData: ExpensesSummaryData[];
   expensesData: ExpensesSummaryData[];
 };
 
-export type ExpenseAction = { type: 'SET_FETCHED_DATA'; payload: OpenAIExpenseObject[] } | { type: 'CLEAR_DATA' };
+export type ExpenseAction = { type: 'SET_INPUT_DATA'; payload: ExpenseTransaction[] } | { type: 'SET_FETCHED_DATA'; payload: OpenAIExpenseObject[] } | { type: 'CLEAR_DATA' };

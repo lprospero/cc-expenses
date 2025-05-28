@@ -9,9 +9,9 @@ import { useAppContext } from '../context/AppContext';
  */
 
 const AddExpensesButton = () => {
-  const { state } = useAppContext();
+  const { state, dispatch } = useAppContext();
   const [loading, setLoading] = useState(false);
-  const transactions : ExpenseTransaction[] = [
+  const transactions: ExpenseTransaction[] = [
     { VND: 'Amazon', AMT: 89.99, DTE: '2025-04-10' },
     { VND: 'Starbucks', AMT: 5.25, DTE: '2025-04-11' },
     { VND: 'Apple Store', AMT: 1299.0, DTE: '2025-04-15' },
@@ -31,6 +31,7 @@ const AddExpensesButton = () => {
         await addDoc(collection(db, 'expenses'), tx);
       }
       alert('All transactions uploaded successfully!');
+      dispatch({ type: 'SET_INPUT_DATA', payload: transactions });
     } catch (error) {
       console.error('Error adding transactions:', error);
       alert('Failed to add transactions.');
@@ -48,7 +49,9 @@ const AddExpensesButton = () => {
       >
         {loading ? 'Adding...' : 'Add Expenses'}
       </button>
-      <pre className='bg-gray-700 text-white mt-4 whitespace-pre-wrap p-4 rounded'>{JSON.stringify(transactions)}</pre>
+      <pre className="bg-gray-700 text-white mt-4 whitespace-pre-wrap p-4 rounded">
+        {JSON.stringify(transactions)}
+      </pre>
     </div>
   );
 };

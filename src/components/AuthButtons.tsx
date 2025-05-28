@@ -9,7 +9,7 @@ import { useEffect } from 'react';
  */
 
 const AuthButtons = () => {
-  const [ user ] = useAuthState(auth);
+  const [user] = useAuthState(auth);
   const { state, dispatch } = useAppContext();
   const login = () => signInWithPopup(auth, provider);
   const logout = () => signOut(auth);
@@ -18,22 +18,22 @@ const AuthButtons = () => {
     if (user) {
       dispatch({ type: 'LOGIN', payload: { name: user.displayName || '' } });
     } else {
-      dispatch({ type: 'SET_FETCHED_DATA', payload: [] });
+      dispatch({ type: 'CLEAR_DATA' });
       dispatch({ type: 'LOGOUT' });
     }
   }, [user, dispatch]);
 
   return (
-    <div className='mb-4 ml-auto'>
+    <div className="mb-4 ml-auto">
       {user ? (
-        <>
-          <p className='mb-2'>Signed in as {state.auth.user?.name}</p>
-          <button onClick={logout} className='bg-red-500 text-white px-4 py-2 rounded'>
+        <div>
+          <p className="mb-2">Signed in as {state.auth.user?.name}</p>
+          <button onClick={logout} className="bg-red-500 text-white px-4 py-2 rounded">
             Logout
           </button>
-        </>
+        </div>
       ) : (
-        <button onClick={login} className='bg-green-500 text-white px-4 py-2 rounded'>
+        <button onClick={login} className="bg-green-500 text-white px-4 py-2 rounded">
           Sign in with Google
         </button>
       )}

@@ -9,11 +9,9 @@ const Dashboard = () => {
     <main className="flex-1 p-6 bg-white overflow-auto rounded-b-lg space-y-6">
       <div className="bg-white rounded-lg shadow p-4">
         <h2 className="text-lg font-semibold mb-4">Visualisation</h2>
-        {state.expenses.expensesData.length > 0 && (
-          <div>
-            <ExpensesChart />
-          </div>
-        )}
+        <div>
+          <ExpensesChart />
+        </div>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <AddExpensesButton />
